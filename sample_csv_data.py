@@ -1,11 +1,13 @@
 import sys
 import random
 
-for line in sys.stdin:
-	if 'header' not in vars():
-		header = line.strip()
-		print header
-	else:
-		info = line.strip()
-		if random.randint(1,100) == 1:
-			print info
+file_name = sys.argv[1]
+with open(file_name) as f,open(file_name + '.sample','a+') as f_out:
+	for line in f:
+		if 'header' not in vars():
+			header = line.strip()
+			f_out.write(header + '\n')
+		else:
+			info = line.strip()
+			if random.randint(1,100) == 1:
+				f_out.write(info + '\n')
